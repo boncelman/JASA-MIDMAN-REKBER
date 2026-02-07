@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samy Skibidi - Jasa Midman & Rekber</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #FF6B35;
+            --secondary: #FFA500;
+            --accent: #FFD166;
+            --light: #f8f9fa;
+            --dark: #1a1a1a;
+            --shadow: 0 10px 30px rgba(255, 107, 53, 0.2);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            color: var(--light);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+        
+        .profile-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease;
+        }
+        
+        .logo-container {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
+        }
+        
+        .logo {
+            font-size: 50px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .profile-name {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #FF6B35, #FFA500, #FFD166);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .profile-title {
+            color: #FFD166;
+            font-size: 18px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            padding: 8px 20px;
+            background: rgba(255, 209, 102, 0.1);
+            border-radius: 30px;
+            display: inline-block;
+            border: 1px solid rgba(255, 209, 102, 0.3);
+        }
+        
+        .bio {
+            background: rgba(255, 107, 53, 0.15);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            font-size: 18px;
+            line-height: 1.5;
+            font-weight: 700;
+            color: #FFD166;
+            border-left: 4px solid var(--primary);
+            text-shadow: 0 0 10px rgba(255, 209, 102, 0.3);
+        }
+        
+        .bio::before, .bio::after {
+            content: "🔥";
+            margin: 0 5px;
+        }
+        
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 18px 25px;
+            border-radius: 15px;
+            text-decoration: none;
+            color: white;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: 0.5s;
+        }
+        
+        .social-link:hover::before {
+            left: 100%;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            border-radius: 12px;
+            margin-right: 20px;
+        }
+        
+        .instagram .social-icon {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+        }
+        
+        .facebook .social-icon {
+            background: linear-gradient(45deg, #1877F2, #0d5fcc);
+        }
+        
+        .whatsapp .social-icon {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+        }
+        
+        .social-text {
+            flex-grow: 1;
+            text-align: left;
+        }
+        
+        .social-name {
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .social-desc {
+            font-size: 14px;
+            color: #aaa;
+        }
+        
+        .social-arrow {
+            font-size: 20px;
+            color: #aaa;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover .social-arrow {
+            transform: translateX(5px);
+            color: var(--accent);
+        }
+        
+        .footer {
+            color: #777;
+            font-size: 14px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .click-instruction {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #FFD166;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .highlight {
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 107, 53, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 107, 53, 0); }
+        }
+        
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #FFD166; }
+            50% { text-shadow: 0 0 15px #FFD166, 0 0 20px #FF6B35; }
+            100% { text-shadow: 0 0 5px #FFD166; }
+        }
+        
+        .glow-text {
+            animation: glow 2s infinite;
+        }
+        
+        @media (max-width: 600px) {
+            .profile-card {
+                padding: 30px 20px;
+            }
+            
+            .profile-name {
+                font-size: 26px;
+            }
+            
+            .bio {
+                font-size: 16px;
+                padding: 15px;
+            }
+            
+            .social-link {
+                padding: 15px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-card">
+            <div class="logo-container">
+                <div class="logo">SS</div>
+            </div>
+            
+            <h1 class="profile-name">Samy Skibidi</h1>
+            <div class="profile-title">JASA MIDMAN ATAU REKBER AMANAH<span class="highlight glow-text">🔥</span></div>
+            
+            <div class="bio">
+                JASA MIDMAN ATAU REKBER AMANAH🔥
+            </div>
+            
+            <div class="links-container">
+                <a href="https://www.instagram.com/samsamuelarifin?igsh=MTk1ZmRmMjc3OWhqcg==" target="_blank" class="social-link instagram pulse">
+                    <div class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="social-text">
+                        <div class="social-name">Instagram</div>
+                        <div class="social-desc">Follow untuk info layanan terbaru</div>
+                    </div>
+                    <div class="social-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </a>
+                
+                <a href="https://www.facebook.com/share/1GvnDjxcWR/" target="_blank" class="social-link facebook">
+                    <div class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div class="social-text">
+                        <div class="social-name">Facebook</div>
+                        <div class="social-desc">Hubungi via Facebook</div>
+                    </div>
+                    <div class="social-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </a>
+                
+                <a href="https://wa.me/qr/EFVMGCXNHRV6A1" target="_blank" class="social-link whatsapp">
+                    <div class="social-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="social-text">
+                        <div class="social-name">WhatsApp</div>
+                        <div class="social-desc">Konsultasi langsung via WhatsApp</div>
+                    </div>
+                    <div class="social-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="footer">
+                <p>© 2023 Samy Skibidi. Semua hak dilindungi.</p>
+                <p class="click-instruction">Klik pada kartu media sosial untuk terhubung dengan saya</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Menambahkan efek interaktif saat hover
+        document.querySelectorAll('.social-link').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                this.classList.add('pulse');
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                this.classList.remove('pulse');
+            });
+        });
+        
+        // Efek animasi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('.social-link');
+            links.forEach((link, index) => {
+                link.style.animationDelay = `${index * 0.1}s`;
+            });
+            
+            // Animasi untuk teks bio
+            const bio = document.querySelector('.bio');
+            setTimeout(() => {
+                bio.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    bio.style.transform = 'scale(1)';
+                }, 300);
+            }, 1000);
+        });
+        
+        // Menambahkan efek klik
+        document.querySelectorAll('.social-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Efek klik
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+                
+                // Notifikasi di konsol
+                console.log("Membuka media sosial Samy Skibidi - Jasa Midman/Rekber");
+            });
+        });
+        
+        // Notifikasi di konsol
+        console.log("=========================================");
+        console.log("WEBSITE SAMY SKIBIDI - JASA MIDMAN/REKBER");
+        console.log("=========================================");
+        console.log("Instagram: https://www.instagram.com/samsamuelarifin");
+        console.log("Facebook: https://www.facebook.com/share/1GvnDjxcWR/");
+        console.log("WhatsApp: https://wa.me/qr/EFVMGCXNHRV6A1");
+        console.log("=========================================");
+    </script>
+</body>
+</html>
